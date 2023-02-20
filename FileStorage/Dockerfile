@@ -9,10 +9,10 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["FileStorage/FileStorage.csproj", "FileStorage/"]
-RUN dotnet restore "FileStorage/FileStorage.csproj"
+COPY ["FileStorage.csproj", "./"]
+RUN dotnet restore "FileStorage.csproj"
 COPY . .
-WORKDIR "/src/FileStorage"
+WORKDIR "/src/."
 RUN dotnet build "FileStorage.csproj" -c Release -o /app/build
 
 FROM build AS publish
